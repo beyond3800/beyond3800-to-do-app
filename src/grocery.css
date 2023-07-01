@@ -73,12 +73,18 @@ header{
 }
 .clearItems{
     text-align: center;
+}
+#clearItems{
     font-size: 20px;
     color: rgb(215, 39, 39);
     cursor: pointer;
+    background: transparent;
+    border: transparent;
 }
 .eachItem{
     text-transform: capitalize;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333;
 }
 .eachItems{
     display: flex;
@@ -90,9 +96,18 @@ header{
     padding: 5px;
     background: transparent;
     border: transparent;
+    cursor: pointer;
 }
 .edit{
     background: rgb(45, 171, 45);
+    color: #000;
+}
+.edit:hover{
+    background: rgb(3, 101, 3);
+    color: #000;
+}
+.delete:hover{
+    background: red;
     color: #000;
 }
 .delete{

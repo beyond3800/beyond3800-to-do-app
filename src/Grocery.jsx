@@ -14,6 +14,7 @@ function Grocery() {
     items,
     editBtn,
     edit,
+    editRef
   }
   =useContext(GroceryContext)
   return (
@@ -24,7 +25,7 @@ function Grocery() {
         
        <header><h1>Grocery Bug</h1></header> 
         
-          <input type="text" id='grocery' name="" value={eachItem} placeholder='e.g. egg' onChange={(e)=>handleItems(e)} />
+          <input type="text" id='grocery'ref={editRef} name="" value={eachItem} placeholder='e.g. egg' onChange={(e)=>handleItems(e)} />
           {
             editBtn ? <button className='Submit' onClick={edit}>Edit</button> :
             <button className='Submit' onClick={saveItems}>Submit</button>
@@ -36,8 +37,8 @@ function Grocery() {
            }
         </div>
         {
-        items.length>0&&  <div onClick={deleteItems} className="clearItems">
-              Clear Items
+        items.length>0&&  <div className="clearItems">
+             <button onClick={deleteItems} id='clearItems'>Clear items </button>
         </div>
         }
       

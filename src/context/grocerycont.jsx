@@ -1,4 +1,5 @@
 import {createContext,useState,useEffect} from "react";
+import { useRef } from "react";
 
 export const GroceryContext=createContext(null)
 
@@ -8,8 +9,7 @@ export const GroceryProvider=(props)=>{
     const [id,setId]=useState(0)
     const [alert,setAlert]=useState()
     const [editBtn,setEditBtn]=useState(false)
-
-
+    const editRef =useRef(null)
 
     const handleItems=(e)=>{
         const {value} = e.target
@@ -17,9 +17,7 @@ export const GroceryProvider=(props)=>{
     }
     const displayAlert=(alert)=>{
       
-            setAlert(alert)
-        
-        
+        setAlert(alert)
         setTimeout(()=>{
         setAlert('')
         },1000)
@@ -57,18 +55,19 @@ export const GroceryProvider=(props)=>{
     const deleteItems=()=>{
         localStorage.clear()
         setItems([])
+        setEditBtn(false)
+        setEachItem('')
         displayAlert('all items cleared')
     }
     const eachEdit =(eachItem,id)=>{
-
+      editRef.current.focus()
       setEditBtn(true)
       setEachItem(eachItem)
       setId(id)
     }
     const edit =()=>{
-        setEditBtn(false)
-        console.log(eachItem)
         
+        setEditBtn(false)
         const newArray=[]
         setItems(prev =>{
             for( let i =0; i<prev.length; i++){
@@ -115,6 +114,7 @@ export const GroceryProvider=(props)=>{
       edit,
       eachItem,
       deleteBtn,
+      editRef,
     }
     return(
         <GroceryContext.Provider value={context}>
